@@ -1,0 +1,41 @@
+﻿@page
+@model VoortgangBepalen.Pages.IndexModel
+@{
+    ViewData["Title"] = "Progress";
+}
+
+<form method="post">
+    <input type="number" name="targetValue" min="1" max="100" required />
+    <input type="text" name="taskName" placeholder="Name task" />
+    <button type="submit">Start task</button>
+</form>
+
+<ul id="barsList"></ul>
+
+
+@section Scripts {
+    <script>
+        async function fetchProgress() {
+            const response = await fetch('?handler=Progress');
+            const bars = await response.json();
+
+            const list = document.getElementById('barsList');
+            list.innerHTML = '';
+
+            bars.forEach(bar => {
+                const li = document.createElement('li');
+                li.innerHTML = `${bar.name} - ${bar.progress}% ` +
+                    (bar.isRunning ? '' : '(Done!)') +
+                 `<div class="progress-container">
+                      <div class="progress-bar" style="width:${bar.progress}%;"></div>
+                  </div>`;                   
+                list.appendChild(li);
+            });
+        }
+
+        setInterval(fetchProgress, 500);
+        fetchProgress();
+    </script>
+}
+
+
