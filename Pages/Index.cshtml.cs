@@ -24,18 +24,6 @@ namespace VoortgangBepalen.Pages
         [Range(1, 100, ErrorMessage = "Voer een waarde in tussen 1 en 100")]
         public int TargetValue { get; set; }
         public List<ProgressBarViewModel> ProgressBars { get; set; } = new();
-/*
-        public void OnGet()
-        {
-            ProgressBars = _service.GetAllTasks()
-                .Select(t => new ProgressBarViewModel
-                {
-                    Id = t.Id,
-                    Name = t.Name,
-                    Progress = t.Progress,
-                    IsRunning = t.IsRunning
-                }).ToList();
-        }*/
 
         public JsonResult OnGetProgress()
         {
