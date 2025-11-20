@@ -26,11 +26,11 @@
                 const li = document.createElement('li');
 
                 li.innerHTML = `
-                    ${bar.name} - ${bar.progress}% ${bar.isRunning ? '' : '(Done!)')}
+                    ${bar.name} - ${bar.progress}% ${bar.isRunning ? '' : '(Done!)'}
                     <div class="progress-container">
-                      <div class="progress-bar" style="width:${bar.progress}%;"></div>
-                  </div>
-                `;            
+                        <div class="progress-bar" style="width:${bar.progress}%;"></div>
+                    </div>
+                `;
 
                 list.appendChild(li);
             });
