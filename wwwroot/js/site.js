@@ -3,8 +3,21 @@
 
 // Write your JavaScript code.
 
-li.innerHTML = `${bar.name} - ${bar.progress}% ` +
-    (bar.isRunning ? '' : '(Done!)') +
-    `<div class="progress-container">
-        <div class="progress-bar" style="width:${bar.progress}%;"></div>
-     </div>`;
+const list = document.getElementById("barsList");
+
+function updateOrCreateBar(bar) {
+    let li = document.getElementById(`bar-${bar.id}`);
+
+    if (!li) {
+        li = document.createElement("li");
+        li.id = `bar-${bar.id}`;
+        list.appendChild(li);
+    }
+
+    li.innerHTML = `
+        ${bar.name} - ${bar.progress}% ${bar.isRunning ? '' : '(Done!)'}
+        <div class="progress-container">
+            <div class="progress-bar" style="width:${bar.progress}%;"></div>
+        </div>
+    `;
+}
